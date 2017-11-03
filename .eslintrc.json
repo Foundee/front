@@ -58,6 +58,7 @@
         "no-lonely-if": 2,
         "no-use-before-define": 2,
         "no-with": 2,
-        "eqeqeq": [ 2, "smart" ]
+        "eqeqeq": [ 2, "smart" ],
+        "no-console": 0
     }
 }
