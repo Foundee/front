@@ -3,6 +3,7 @@ module.exports = {
 		baseUrl: process.env.BASE_URL || 'http://localhost:3000'
 	},
 	plugins: [
+		'~/plugins/i18n',
 		'~/plugins/axios'
 	],
 	head: {
@@ -33,7 +34,10 @@ module.exports = {
 		color: '#3B8070'
 	},
 	build: {
-		vendor: [ 'axios' ],
+		vendor: [
+			'axios',
+			'vue-i18n'
+		],
 		extend( config, ctx ) {
 			if ( ctx.dev && ctx.isClient ) {
 				config.module.rules.push( {
