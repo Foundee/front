@@ -1,5 +1,10 @@
 module.exports = {
-	env: {},
+	env: {
+		baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+	},
+	plugins: [
+		'~/plugins/axios'
+	],
 	head: {
 		title: 'foundee-front',
 		meta: [
@@ -28,6 +33,7 @@ module.exports = {
 		color: '#3B8070'
 	},
 	build: {
+		vendor: [ 'axios' ],
 		extend( config, ctx ) {
 			if ( ctx.dev && ctx.isClient ) {
 				config.module.rules.push( {
