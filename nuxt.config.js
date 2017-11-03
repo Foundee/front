@@ -1,4 +1,5 @@
 module.exports = {
+	env: {},
 	head: {
 		title: 'foundee-front',
 		meta: [
