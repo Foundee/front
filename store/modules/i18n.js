@@ -1,3 +1,5 @@
+import * as types from '@/store/mutation-types'
+
 const state = () => {
 	return {
 		locales: ['en', 'pl'],
@@ -6,7 +8,7 @@ const state = () => {
 }
 
 const mutations = {
-	SET_LANG (state, locale) {
+	[types.SET_LANGUAGE] (state, locale) {
 		if (state.locales.includes(locale)) {
 			state.locale = locale
 			this.app.i18n.locale = locale
