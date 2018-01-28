@@ -6,13 +6,18 @@ import pl from '~/locales/pl'
 
 Vue.use(VueI18n)
 
-export default ({ app, store }) => {
+export default async ({ app, store }) => {
+	// mock API - get app language
+	const locale = await new Promise(resolve => {
+		setTimeout(() => resolve('en'), 10)
+	})
+
 	app.i18n = new VueI18n({
-		locale: store.state.i18n.locale,
 		fallbackLocale: 'en',
 		messages: {
 			en,
 			pl
-		}
+		},
+		locale
 	})
 }
