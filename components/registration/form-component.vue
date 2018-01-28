@@ -8,10 +8,14 @@
 		<input
 			id="user-name-input"
 			type="text"
-			v-model="name"
+			v-model="username"
+			@input="onUsernameInput"
 			:placeholder="this.$t('registration.USER_NAME')"
 			required
 		>
+		<span v-if="!isUsernameAvailable">
+			{{ username }} {{ $t('registration.IS_NOT_AVAILABLE')}}
+		</span>
 		<!-- e/o user name -->
 
 		<br>
@@ -24,9 +28,13 @@
 			id="email-input"
 			type="email"
 			v-model="email"
+			@input="onEmailInput"
 			:placeholder="this.$t('registration.EMAIL')"
 			required
 		>
+		<span v-if="!isEmailAvailable">
+			{{ email }} {{ $t('registration.IS_NOT_AVAILABLE')}}
+		</span>
 		<!-- e/o e-mail -->
 
 		<br>
@@ -76,20 +84,43 @@
 </template>
 
 <script>
+import debounce from 'lodash.debounce'
+import agent from '@/store/agent'
+
 export default {
 	data () {
 		return {
-			name: '',
+			username: '',
 			email: '',
 			password: '',
-			repeatedPassword: ''
+			repeatedPassword: '',
+			isUsernameAvailable: true,
+			isEmailAvailable: true
 		}
 	},
 	methods: {
 		onSubmit () {
-			const { name, email, password, repeatedPassword } = this
-			this.$emit('submit', { name, email, password, repeatedPassword })
-		}
+			const { username, email, password, repeatedPassword } = this
+			this.$emit('submit', { username, email, password, repeatedPassword })
+		},
+		onUsernameInput () {
+			this.isUsernameAvailable = true
+			this.checkUsernameAvailabilty()
+		},
+		onEmailInput () {
+			this.isEmailAvailable = true
+			this.checkEmailAvailabilty()
+		},
+		checkUsernameAvailabilty: debounce(async function () {
+			if (this.username.length === 0) return
+			const { available } = await agent.Auth.usernameAvailabilty(this.username)
+			this.isUsernameAvailable = available
+		}, 500),
+		checkEmailAvailabilty: debounce(async function () {
+			if (this.email.length === 0) return
+			const { available } = await agent.Auth.emailAvailabilty(this.email)
+			this.isEmailAvailable = available
+		}, 500)
 	}
 }
 </script>

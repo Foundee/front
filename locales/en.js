@@ -9,6 +9,7 @@ export default {
 		'PASSWORD': 'Password',
 		'REPEATED_PASSWORD': 'Repeated password',
 		'TERMS': 'Terms',
-		'I_ACCEPT_THE_TERMS': 'I accept the terms'
+		'I_ACCEPT_THE_TERMS': 'I accept the terms',
+		'IS_NOT_AVAILABLE': 'is not available'
 	}
 }
