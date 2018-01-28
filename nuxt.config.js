@@ -31,6 +31,9 @@ module.exports = {
 			}
 		]
 	},
+	css: [
+		'~/assets/sass/main.scss'
+	],
 	loading: {
 		color: '#3B8070'
 	},

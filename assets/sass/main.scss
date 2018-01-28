@@ -1,0 +1,20 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.container {
+	display: flex;
+	border: 1px solid #ccc;
+	max-width: 1024px;
+	margin: 0 auto;
+	padding: 0 5px;
+}
+
+.site-title {
+	border: 1px solid #ccc;
+	padding: 5px;
+	margin: 0;
+}
