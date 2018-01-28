@@ -14,15 +14,26 @@
 
 			<hr>
 
+			<form-component @submit="onSubmit"></form-component>
+
 		</div>
 	</div>
 </template>
 
 <script>
+import formComponent from '@/components/registration/form-component.vue'
 export default {
 	head () {
 		return {
 			title: `${ this.$t('registration.REGISTRATION') } - ${ this.$store.state.common.appName }`
+		}
+	},
+	components: {
+		formComponent
+	},
+	methods: {
+		onSubmit (data) {
+			console.log(data)
 		}
 	}
 }
